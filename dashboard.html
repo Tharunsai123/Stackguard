@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stackguard | Dashboard</title>
+<style>
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f5f5fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.box {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 400px;
+  text-align: center;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.logo img { height: 28px; }
+h1 { color: #3b0b9c; }
+button {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: #3b0b9c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: #2a0875; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/White_shield_icon.svg" alt="logo">
+      <strong>Stackguard</strong>
+    </div>
+    <h1>Dashboard Page</h1>
+    <p id="welcome"></p>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+<script>
+const user = localStorage.getItem('user');
+const key = localStorage.getItem('configKey');
+
+if (!user) window.location.href = 'signup.html';
+if (!key) window.location.href = 'config.html';
+
+document.getElementById('welcome').innerText = `Welcome, ${user}`;
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.clear();
+  window.location.href = 'signup.html';
+});
+</script>
+</body>
+</html>

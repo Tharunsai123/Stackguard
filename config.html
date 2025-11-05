@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stackguard | Verify Public Key</title>
+<style>
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  height: 100vh;
+}
+.left {
+  flex: 1;
+  background: #ddd;
+  border-radius: 0 10px 10px 0;
+}
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  width: 80%;
+  max-width: 380px;
+  text-align: center; /* center-aligns heading and paragraph */
+}
+.logo {
+  display: flex;
+  justify-content: center; /* center the logo horizontally */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.logo img {
+  height: 200px; /* same as the previous page */
+}
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+p {
+  color: #444;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1.5rem;
+}
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  background: #f2f1f6;
+  margin-bottom: 1rem;
+  resize: none;
+  transition: background 0.3s ease;
+}
+textarea:hover,
+textarea:focus {
+  background: #f0e6fa; /* purple highlight on hover/focus */
+  outline: none;
+}
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background: #3b0b9c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #2a0875;
+}
+small {
+  display: block;
+  text-align: center;
+  color: #666;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+a {
+  color: #3b0b9c;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+  <div class="left"></div>
+  <div class="right">
+    <div class="box">
+      <div class="logo">
+        <img src="image.png" alt="logo">
+      </div>
+      <h2>Verify your public key</h2>
+      <p>To get started provide your public key for verification</p>
+      <form id="configForm">
+        <textarea id="publicKey" placeholder="Enter your public key..." rows="6"></textarea>
+        <button type="submit">Verify</button>
+      </form>
+      <small>Don’t have a public key? Contact your administrator</small>
+    </div>
+  </div>
+
+<script>
+if (!localStorage.getItem('user')) window.location.href = 'signup.html';
+
+document.getElementById('configForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const key = document.getElementById('publicKey').value.trim();
+  if (key.length < 100 || key.length > 1000) {
+    alert('Public key must be between 100 and 1000 characters.');
+    return;
+  }
+  localStorage.setItem('configKey', key);
+  window.location.href = 'dashboard.html';
+});
+</script>
+</body>
+</html>
